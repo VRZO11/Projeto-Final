@@ -11,6 +11,10 @@ public class Pedido extends Observable {
         this.estado = PedidoCriadoState.getInstance();
     }
 
+    public PedidoState getEstado() {
+        return estado;
+    }
+
     public void setEstado(PedidoState estado) {
         this.estado = estado;
 

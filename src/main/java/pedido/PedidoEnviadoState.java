@@ -10,4 +10,16 @@ public class PedidoEnviadoState extends PedidoState{
     public String getStateName(){
         return "Enviado";
     }
+
+    @Override
+    public boolean entregar(Pedido pedido) {
+        pedido.setEstado(PedidoEntregueState.getInstance());
+        return true;
+    }
+
+    @Override
+    public boolean cancelar(Pedido pedido) {
+        pedido.setEstado(PedidoCanceladoState.getInstance());
+        return true;
+    }
 }

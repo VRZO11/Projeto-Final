@@ -8,4 +8,16 @@ public class PedidoCriadoState extends PedidoState {
     }
 
     public String getStateName() { return "Criado"; }
+
+    @Override
+    public boolean preparar(Pedido pedido) {
+        pedido.setEstado(PedidoPreparadoState.getInstance());
+        return true;
+    }
+
+    @Override
+    public boolean cancelar(Pedido pedido) {
+        pedido.setEstado(PedidoCanceladoState.getInstance());
+        return true;
+    }
 }

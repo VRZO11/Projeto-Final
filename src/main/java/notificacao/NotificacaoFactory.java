@@ -13,7 +13,7 @@ public class NotificacaoFactory {
         }
 
         if (!(objeto instanceof INotificacao)) {
-            throw new IllegalArgumentException("Forma de entrega não implementa a interface");
+            throw new IllegalArgumentException("Forma de notificação não implementa a interface");
         }
 
         return (INotificacao) objeto;

@@ -11,22 +11,27 @@ import java.util.Observer;
 public class Usuario implements Observer {
     private final String name;
     private INotificacao notification;
+    private String ultimaMensagem;
 
     public Usuario(String name, String PreferredNotificationType) {
         this.name = name;
         this.notification = NotificacaoFactory.getNotification(PreferredNotificationType);
     }
 
+    public String getUltimaMensagem() {
+        return ultimaMensagem;
+    }
+
     @Override
-    public void update(Observable o, Object arg) {
-        if (arg instanceof Map) {
-            Map<?, ?> evento = (Map<?, ?>) arg;
+    public void update(Observable o, Object argument) {
+        if (argument instanceof Map) {
+            Map<?, ?> evento = (Map<?, ?>) argument;
             String type = (String) evento.get("type");
             PedidoState estado = (PedidoState) evento.get("data");
 
             if(type.equals("StatusUpdate")) {
                 String mensagem = name + " O status do seu pedido foi atualizado para: " + estado;
-                notification.send(mensagem);
+                this.ultimaMensagem = notification.send(mensagem);
             }
         }
     }

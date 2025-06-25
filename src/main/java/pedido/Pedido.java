@@ -1,14 +1,18 @@
 package pedido;
 
+import produto.IProduto;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Observable;
 
 public class Pedido extends Observable {
     private PedidoState estado;
+    private String descricao;
 
-    public Pedido() {
+    public Pedido(IProduto descricao) {
         this.estado = PedidoCriadoState.getInstance();
+        this.descricao = descricao.getDescricao();
     }
 
     public PedidoState getEstado() {
